@@ -14,6 +14,11 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
+    public function cars()
+    {
+        return $this->belongsTo(Car::class, 'id_car');
+    }
+
     public function dateDiffInDays($date1, $date2)
     {
         $diff = strtotime($date2) - strtotime($date1);

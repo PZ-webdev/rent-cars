@@ -14,7 +14,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::with('cars')->get();
+
+        return view('transaction.index', compact('transactions'));
     }
 
     /**
@@ -46,7 +48,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transaction.show', compact('transaction'));
     }
 
     /**

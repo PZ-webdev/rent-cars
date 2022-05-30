@@ -23,6 +23,8 @@ class TransactionFactory extends Factory
            'id_car' => Car::all()->random()->id,
            'date_start' =>  $this->faker->dateTimeInInterval('-1 week', 'now'),
            'date_end' => $this->faker->dateTimeInInterval('now', '+1 week'),
+           'km_traveled' => rand(100, 1000),
+           'rental_amount' => rand(100, 1000),
            'refundable_deposit' => rand(100, 1000),
            'amount_to_pay' => rand(500, 2000),
         ];
