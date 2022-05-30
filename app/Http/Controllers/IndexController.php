@@ -14,8 +14,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        dd($cars);
+ //       $cars = Car::all();
+ //       dd($cars);
 
         
         return view('index');

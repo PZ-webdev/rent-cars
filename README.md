@@ -28,12 +28,12 @@ Run the database migrations (**Set the database connection in .env before migrat
 
     php artisan migrate
 
-Run the database seeder and you're done
+Run the database seeder and you're done.
 
     php artisan db:seed
 
-Start the local development server
+Start the local development server.
 
     php artisan serve
 
-You can now access the server at http://localhost:8000
+You can now access the server at http://localhost:8000.
