@@ -18,7 +18,7 @@
                     <a class="profile-pic" href="#">
                         <img src="{{ asset('admin/plugins/images/users/varun.jpg') }}" alt="user-img" width="36"
                             class="img-circle">
-                        <span class="text-white font-medium">Imie</span></a>
+                        <span class="text-white font-medium">Admin</span></a>
                 </li>
             </ul>
         </div>
