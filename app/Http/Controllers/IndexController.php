@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -14,12 +15,13 @@ class IndexController extends Controller
      */
     public function index()
     {
- //       $cars = Car::all();
- //       dd($cars);
+        $reservationCount = Transaction::count();
+        $carsCount = Car::count();
+        $reservationPriceSum = Transaction::sum('amount_to_pay');
+        $lastReservations = Transaction::with('users')->latest()->take(8)->get();
 
-        
-        return view('index');
-    }
+
+        return view('index', compact('reservationCount', 'carsCount', 'reservationPriceSum', 'lastReservations'));}
 
     /**
      * Show the form for creating a new resource.
