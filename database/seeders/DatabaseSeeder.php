@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Archives;
 use App\Models\Car;
 use App\Models\Transaction;
 use App\Models\User;
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         User::factory(1000)->create();
         Car::factory(30)->create();
         Transaction::factory(500)->create();
+        Archives::factory(100)->create();
     }
 }
