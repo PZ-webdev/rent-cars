@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Archives;
 use App\Models\Car;
+use App\Models\CarColor;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -18,8 +19,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(1000)->create();
+        User::factory(100)->create();
+        CarColor::factory(10)->create();
         Car::factory(30)->create();
-        Transaction::factory(500)->create();
+        Transaction::factory(50)->create();
     }
 }

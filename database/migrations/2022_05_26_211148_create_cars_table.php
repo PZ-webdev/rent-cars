@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('model');
             $table->string('registration_number');
             $table->integer('year_production');
-            $table->string('car_paint')->nullable();
+
+            $table->unsignedBigInteger('id_car_colors');
+            $table->foreign('id_car_colors')->references('id')->on('car_colors');
+
             $table->integer('car_mileage')->default(0);
             $table->float('rent_price');
             $table->text('equipment')->nullable();
