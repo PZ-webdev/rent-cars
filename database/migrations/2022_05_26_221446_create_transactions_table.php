@@ -25,6 +25,8 @@ return new class extends Migration
 
             $table->date('date_start');
             $table->date('date_end')->nullable();
+            $table->integer('km_traveled')->nullable();
+            $table->float('rental_amount');
             $table->float('refundable_deposit')->nullable();
             $table->float('amount_to_pay')->nullable();
             $table->timestamps();

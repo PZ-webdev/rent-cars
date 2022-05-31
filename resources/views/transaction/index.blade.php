@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
+                    <a href="{{ route('transactions.create') }}" class="btn tbn-sm btn-success my-3">Dodaj</a>
                     <div class="table-responsive">
                         <table id="reservation">
                             <thead>
@@ -46,8 +47,11 @@
                                         </td>
                                         <td>{{ $transaction->date_start }}</td>
                                         <td>{{ $transaction->date_end }}</td>
-                                        <td>${{ $transaction->amount_to_pay }}</td>
+                                        <td>{{ $transaction->rental_amount - $transaction->refundable_deposit }} zł</td>
                                         <td>
+                                            <a href="{{ route('transactions.edit', $transaction->id) }}"
+                                                class="btn btn-sm btn-info">Edytuj</a>
+
                                             <a href="{{ route('transactions.show', $transaction->id) }}"
                                                 class="btn btn-sm btn-primary">Szczegóły</a>
                                         </td>
