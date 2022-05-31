@@ -33,11 +33,39 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Imie i Nazwisko</th>
-                                <td>{{ $transaction->users->first_name . ' ' . $transaction->users->last_name }}</td>
+                                <td><u>{{ $transaction->users->first_name . ' ' . $transaction->users->last_name }}</u>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Data Wynajmu</th>
                                 <td>{{ $transaction->date_start . ' - ' . $transaction->date_end }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Samochód</th>
+                                <td><a href="{{ route('cars.show', $transaction->id_car) }}"
+                                        class="link-primary ">{{ $transaction->cars->mark . ' ' . $transaction->cars->model }}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Przejechane Km</th>
+                                <td>
+                                    {{ $transaction->km_traveled }}km
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Obecna kwota za wynajem</th>
+                                <td>
+                                    {{ $transaction->rental_amount }} zł
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Zaliczka</th>
+                                <td>{{ $transaction->refundable_deposit }} zł</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kwota do zapłaty</th>
+                                <td><strong>{{ $transaction->rental_amount - $transaction->refundable_deposit }}
+                                        zł</strong></td>
                             </tr>
                         </tbody>
                     </table>

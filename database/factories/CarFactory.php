@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\CarColor;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use Faker\Generator as Faker;
@@ -29,7 +30,7 @@ class CarFactory extends Factory
             'registration_number' => $this->faker->vehicleRegistration(),
             'year_production' => rand(2000, 2022),
             'rent_price' => round(rand(100, 1000),0),
-            'car_paint'=> $this->faker->colorName(),
+            'id_car_colors'=> CarColor::all()->random()->id,
             'car_mileage'=> rand(100000, 250000),
             'equipment'=> null,
         ];
