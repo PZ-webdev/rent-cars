@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         User::factory(1000)->create();
         Car::factory(30)->create();
         Transaction::factory(500)->create();
-        Archives::factory(100)->create();
     }
 }
