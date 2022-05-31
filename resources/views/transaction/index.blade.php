@@ -51,6 +51,7 @@
                                         <td>
                                             <a href="{{ route('transactions.edit', $transaction->id) }}"
                                                 class="btn btn-sm btn-info">Edytuj</a>
+
                                             <a href="{{ route('transactions.show', $transaction->id) }}"
                                                 class="btn btn-sm btn-primary">Szczegóły</a>
                                         </td>
