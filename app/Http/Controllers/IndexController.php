@@ -20,8 +20,8 @@ class IndexController extends Controller
         $reservationPriceSum = Transaction::sum('amount_to_pay');
         $lastReservations = Transaction::with('users')->latest()->take(8)->get();
 
-        return view('index', compact('reservationCount', 'carsCount', 'reservationPriceSum', 'lastReservations'));
-    }
+
+        return view('index', compact('reservationCount', 'carsCount', 'reservationPriceSum', 'lastReservations'));}
 
     /**
      * Show the form for creating a new resource.
