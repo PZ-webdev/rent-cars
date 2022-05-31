@@ -14,7 +14,9 @@ class CarController extends Controller
      */
     public function index()
     {
-        //
+        $cars = Car::with('colors')->get();
+
+        return view('car.index', compact('cars'));
     }
 
     /**
@@ -46,7 +48,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        return view('car.show', compact('car'));
     }
 
     /**
