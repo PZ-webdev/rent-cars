@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         CarColor::factory(10)->create();
         Car::factory(30)->create();
         Transaction::factory(50)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(AdminSeeder::class);
     }
 }
