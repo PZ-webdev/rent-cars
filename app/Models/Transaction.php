@@ -9,6 +9,19 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'id_user',
+        'id_car',
+        'date_start',
+        'date_end',
+        'km_before',
+        'km_traveled',
+        'rental_amount',
+        'refundable_deposit',
+        'amount_to_pay',
+        'rented',
+    ];
+
     public function users()
     {
         return $this->belongsTo(User::class, 'id_user');

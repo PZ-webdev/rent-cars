@@ -49,6 +49,11 @@
                                         <td>{{ $transaction->date_end }}</td>
                                         <td>{{ $transaction->rental_amount - $transaction->refundable_deposit }} zł</td>
                                         <td>
+                                            @if ($transaction->km_traveled == null)
+                                                <a href="{{ route('transactions.edit', $transaction->id) }}"
+                                                    class="btn btn-sm btn-danger">Zakończ</a>
+                                            @endif
+
                                             <a href="{{ route('transactions.edit', $transaction->id) }}"
                                                 class="btn btn-sm btn-info">Edytuj</a>
 

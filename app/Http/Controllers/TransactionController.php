@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionStoreRequest;
 use App\Models\Car;
 use App\Models\Transaction;
 use App\Models\User;
@@ -16,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::with('cars')->get();
+        $transactions = Transaction::with('cars')->orderBy('km_traveled', 'DESC')->get();
 
         return view('transaction.index', compact('transactions'));
     }
@@ -40,23 +41,26 @@ class TransactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TransactionStoreRequest $request)
     {
-        // dd($request);
-        $rental_amount = Car::findOrFail($request->id_car);
-        $rental_amount = $rental_amount->rent_price;
-        // dd($rental_amount);
+        $car = Car::findOrFail($request->id_car);
 
+        $rental_amount = $car->rent_price;
+        $car_mileage = $car->car_mileage;
 
         Transaction::create([
-            'id_user' => $request->id_user,
-            'id_car' => $request->id_car,
-            'date_start' => $request->date_start,
-            'date_end' => $request->date_end,
+            'id_user'            => $request->id_user,
+            'id_car'             => $request->id_car,
+            'date_start'         => $request->date_start,
+            'date_end'           => $request->date_end,
+            'km_before'          => $car_mileage,
             'refundable_deposit' => $request->refundable_deposit,
-            'km_traveled' => null,
-            'amount_to_pay' => $this->dateDiffInDays($request->date_start,  $request->date_end) + $rental_amount,
+            'km_traveled'        => null,
+            'rental_amount'      => $rental_amount,
+            'amount_to_pay'      => $this->dateDiffInDays($request->date_start,  $request->date_end) + $rental_amount,
         ]);
+
+        return redirect()->route('transactions.index')->with(['type' => 'success', 'message' => 'Dodano rezerwację.']);
     }
 
     /**
@@ -78,7 +82,10 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $users = User::all();
+        $cars = Car::all();
+
+        return view('transaction.edit', compact('transaction', 'users', 'cars'));
     }
 
     /**
@@ -88,9 +95,18 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(TransactionStoreRequest $request, Transaction $transaction)
     {
-        //
+        $transaction->update([
+            'id_user'            => $request->id_user,
+            'id_car'             => $request->id_car,
+            'date_start'         => $request->date_start,
+            'date_end'           => $request->date_end,
+            'refundable_deposit' => $request->refundable_deposit,
+            'km_traveled'        => null,
+        ]);
+
+        return redirect()->route('transactions.index')->with(['type' => 'success', 'message' => 'Edytowano rezerwację.']);
     }
 
     /**
@@ -101,7 +117,9 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+
+        return redirect()->route('transactions.index')->with(['type' => 'info', 'message' => 'Usunięto rezerwację.']);
     }
 
     private function dateDiffInDays($date1, $date2)
