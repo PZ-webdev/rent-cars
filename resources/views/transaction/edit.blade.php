@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('content')
     <div class="page-breadcrumb bg-white">
         <div class="row align-items-center">
