@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -26,7 +28,10 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        $cars = Car::all();
+
+        return view('transaction.create', compact('users', 'cars'));
     }
 
     /**
@@ -37,7 +42,21 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $rental_amount = Car::findOrFail($request->id_car);
+        $rental_amount = $rental_amount->rent_price;
+        // dd($rental_amount);
+
+
+        Transaction::create([
+            'id_user' => $request->id_user,
+            'id_car' => $request->id_car,
+            'date_start' => $request->date_start,
+            'date_end' => $request->date_end,
+            'refundable_deposit' => $request->refundable_deposit,
+            'km_traveled' => null,
+            'amount_to_pay' => $this->dateDiffInDays($request->date_start,  $request->date_end) + $rental_amount,
+        ]);
     }
 
     /**
@@ -83,5 +102,11 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    private function dateDiffInDays($date1, $date2)
+    {
+        $diff = strtotime($date2) - strtotime($date1);
+        return abs(round($diff / 86400)) + 1;
     }
 }
