@@ -14,7 +14,9 @@ class ArchivesController extends Controller
      */
     public function index()
     {
-        //
+        $archives = Archives::with('cars')->get();
+
+        return view('archive.index', compact('archives'));
     }
 
     /**
@@ -46,7 +48,7 @@ class ArchivesController extends Controller
      */
     public function show(Archives $archives)
     {
-        //
+        return view('archive.show', compact('archive'));
     }
 
     /**
