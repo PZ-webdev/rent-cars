@@ -22,6 +22,7 @@ return new class extends Migration
 		SET car_mileage = c.car_mileage + t.km_traveled 
 		from cars c inner join transactions t
 		on c.id = t.id
+        where t.id = 1 and c.id = 1
          $$;
         ";
   
