@@ -31,6 +31,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('car-colors.index') }}"
+                        aria-expanded="false">
+                        <i class="fa fa-paint-brush" aria-hidden="true"></i>
+                        <span class="hide-menu">Kolory Samochodów</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('users.index') }}"
                         aria-expanded="false">
                         <i class="fas fa-users" aria-hidden="true"></i>
