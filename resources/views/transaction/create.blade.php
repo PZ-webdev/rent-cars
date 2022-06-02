@@ -24,16 +24,19 @@
                 <div class="white-box">
                     <h3>Dodaj Rezerwację Samochodu</h3>
 
-                    <form class="form-horizontal form-material mt-4" action="{{ route('transactions.store') }}" method="POST">
+                    <form class="form-horizontal form-material mt-4" action="{{ route('transactions.store') }}"
+                        method="POST">
                         @csrf
                         <div class="form-group mb-4">
                             <label class="col-md-12 p-0">Użytkownik</label>
                             <div class="col-md-12 border-bottom p-0">
                                 <select name="id_user" id="id_user"
                                     class="form-control p-0 border-0  @error('id_user') is-invalid @enderror">
-                                    <option value="" selected disabled>-- Wybierz Użytkownika --</option>
+                                    <option selected disabled>-- Wybierz Użytkownika --</option>
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->first_name }}</option>
+                                        <option value="{{ $user->id }}"
+                                            {{ old('id_user') == $user->id ? 'selected' : '' }}>
+                                            {{ $user->first_name . ' ' . $user->last_name }}</option>
                                     @endforeach
                                     <option value=""></option>
                                 </select>
@@ -49,9 +52,11 @@
                             <div class="col-md-12 border-bottom p-0">
                                 <select name="id_car" id="id_car"
                                     class="form-control p-0 border-0  @error('id_car') is-invalid @enderror">
-                                    <option value="" selected disabled>-- Wybierz Samochód --</option>
+                                    <option selected disabled>-- Wybierz Samochód --</option>
                                     @foreach ($cars as $car)
-                                        <option value="{{ $car->id }}">{{ $car->mark }} [{{ $car->model }}]
+                                        <option value="{{ $car->id }}"
+                                            {{ old('id_car') == $car->id ? 'selected' : '' }}>{{ $car->mark }}
+                                            [{{ $car->model }}]
                                         </option>
                                     @endforeach
                                     <option value=""></option>
@@ -68,7 +73,8 @@
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0">Data Rozpoczęcia</label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="date" value="" name="date_start" placeholder="Data Rozpoczęcia"
+                                        <input type="date" name="date_start" placeholder="Data Rozpoczęcia"
+                                            value="{{ old('date_start') }}"
                                             class="form-control p-0 border-0 @error('date_start') is-invalid @enderror">
                                         @error('date_start')
                                             <span class="invalid-feedback" role="alert">
@@ -82,7 +88,8 @@
                                 <div class="form-group mb-4">
                                     <label class="col-md-12 p-0">Data Zakończenia</label>
                                     <div class="col-md-12 border-bottom p-0">
-                                        <input type="date" value="" name="date_end" placeholder="Data Zakończenia"
+                                        <input type="date" name="date_end" placeholder="Data Zakończenia"
+                                            value="{{ old('date_end') }}"
                                             class="form-control p-0 border-0 @error('date_end') is-invalid @enderror">
                                         @error('date_end')
                                             <span class="invalid-feedback" role="alert">
@@ -97,6 +104,7 @@
                                     <label class="col-md-12 p-0">Zaliczka</label>
                                     <div class="col-md-12 border-bottom p-0">
                                         <input type="number" name="refundable_deposit" placeholder="Zaliczka" min="0"
+                                            value="{{ old('refundable_deposit') }}"
                                             class="form-control p-0 border-0 @error('refundable_deposit') is-invalid @enderror">
                                         @error('refundable_deposit')
                                             <span class="invalid-feedback" role="alert">
