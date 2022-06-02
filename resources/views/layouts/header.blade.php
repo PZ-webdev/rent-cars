@@ -14,12 +14,14 @@
         </div>
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
             <ul class="navbar-nav ms-auto d-flex align-items-center">
-                <li>
-                    <a class="profile-pic" href="#">
-                        <img src="{{ asset('admin/plugins/images/users/varun.jpg') }}" alt="user-img" width="36"
-                            class="img-circle">
-                        <span class="text-white font-medium">Admin</span></a>
-                </li>
+                <a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                Wyloguj się
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
             </ul>
         </div>
     </nav>
