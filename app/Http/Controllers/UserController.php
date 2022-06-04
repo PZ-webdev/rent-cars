@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -27,7 +29,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::all();
+        
+        return view('user.create');
     }
 
     /**
@@ -38,7 +42,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        User::create([
+            'first_name'            => $request->first_name,
+            'last_name'             => $request->last_name,
+            'email'                 => $request->email,
+            'phone'                 => $request->phone,
+            'password'              => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('users.index')->with(['type' => 'success', 'message' => 'Dodano użytkownika.']);
+   
     }
 
     /**
@@ -60,7 +74,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -72,7 +86,15 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
+        $user->update([
+            'first_name'            => $request->first_name,
+            'last_name'             => $request->last_name,
+            'email'                 => $request->email,
+            'phone'                 => $request->phone,
+        ]);
+
+        return redirect()->route('users.index')->with(['type' => 'success', 'message' => 'Edytowano użytkownika.']);
     }
 
     /**
