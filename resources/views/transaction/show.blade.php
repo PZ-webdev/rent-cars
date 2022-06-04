@@ -22,7 +22,15 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
-                    <h3>ID Rezerwacji: {{ $transaction->id }} </h3>
+
+                    <form action="{{ route('transactions.destroy', $transaction->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm mb-3">Usuń</button>
+                    </form>
+
+                    <h3>ID Rezerwacji: {{ $transaction->id }}</h3>
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>

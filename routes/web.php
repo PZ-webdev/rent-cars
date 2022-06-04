@@ -22,11 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource('/', IndexController::class)->only('index');
-Route::resource('/archives', ArchivesController::class);
-Route::resource('/transactions', TransactionController::class);
-Route::resource('/cars', CarController::class);
-Route::resource('/users', UserController::class);
-Route::resource('/car-colors', CarColorController::class);
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::resource('/', IndexController::class)->only('index');
+    Route::resource('/home', HomeController::class)->only('index');
+    Route::resource('/archives', ArchivesController::class);
+    Route::resource('/transactions', TransactionController::class);
+    Route::resource('/cars', CarController::class);
+    Route::resource('/users', UserController::class);
+    Route::resource('/car-colors', CarColorController::class);
+});
