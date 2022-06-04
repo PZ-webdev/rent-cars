@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
+                    <a href="{{ route('users.create') }}" class="btn tbn-sm btn-success my-3">Dodaj</a>
                     <div class="table-responsive">
                         <table id="users">
                             <thead>
@@ -40,6 +41,9 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>
+                                            <a href="{{ route('users.edit', $user->id) }}"
+                                                class="btn btn-sm btn-info">Edytuj</a>
+
                                             <a href="{{ route('users.show', $user->id) }}"
                                                 class="btn btn-sm btn-primary">Szczegóły</a>
                                         </td>
