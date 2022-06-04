@@ -101,7 +101,7 @@ class TransactionController extends Controller
         if ($request->km_traveled != null) {
             DB::select("SELECT update_car(" .  $request->id_car . ", " . $request->km_traveled . ")");
         }
-        
+
         $transaction->update([
             'id_user'            => $request->id_user,
             'id_car'             => $request->id_car,
@@ -125,6 +125,13 @@ class TransactionController extends Controller
         $transaction->delete();
 
         return redirect()->route('transactions.index')->with(['type' => 'info', 'message' => 'Usunięto rezerwację.']);
+    }
+
+    public function transferArchives()
+    {
+        DB::select("CALL transfer_data_to_archives()");
+
+        return redirect()->route('transactions.index')->with(['type' => 'success', 'message' => 'Przeniesiono rezerwacje do archiwum.']);
     }
 
     private function dateDiffInDays($date1, $date2)
