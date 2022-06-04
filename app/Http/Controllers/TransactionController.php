@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -97,13 +98,17 @@ class TransactionController extends Controller
      */
     public function update(TransactionStoreRequest $request, Transaction $transaction)
     {
+        if ($request->km_traveled != null) {
+            DB::select("SELECT update_car(" .  $request->id_car . ", " . $request->km_traveled . ")");
+        }
+        
         $transaction->update([
             'id_user'            => $request->id_user,
             'id_car'             => $request->id_car,
             'date_start'         => $request->date_start,
             'date_end'           => $request->date_end,
             'refundable_deposit' => $request->refundable_deposit,
-            'km_traveled'        => null,
+            'km_traveled'        => $request->km_traveled != 0 ? $request->km_traveled : null,
         ]);
 
         return redirect()->route('transactions.index')->with(['type' => 'success', 'message' => 'Edytowano rezerwację.']);
