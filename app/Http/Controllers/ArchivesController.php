@@ -48,7 +48,7 @@ class ArchivesController extends Controller
      */
     public function show(Archives $archives)
     {
-        return view('archive.show', compact('archive'));
+        return view('archive.show', compact('archives'));
     }
 
     /**

@@ -16,8 +16,10 @@ return new class extends Migration
         CREATE PROCEDURE transfer_data_to_archives()
         LANGUAGE SQL
         AS $$
-         INSERT INTO archives (id_user, id_car, date_start, date_end, refundable_deposit, amount_to_pay)
-            SELECT id_user, id_car, date_start, date_end, refundable_deposit, amount_to_pay FROM transactions WHERE date_end < current_date - 14;
+         INSERT INTO archives (id_user, id_car, date_start, date_end, km_before, km_traveled, rental_amount, refundable_deposit, amount_to_pay)
+            SELECT id_user, id_car, date_start, date_end, km_before, km_traveled, rental_amount, refundable_deposit, amount_to_pay FROM transactions WHERE date_end < current_date - 14;
+        
+        DELETE FROM transactions WHERE date_end < current_date - 14;
         $$;
         ";
   

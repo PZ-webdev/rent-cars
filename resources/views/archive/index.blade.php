@@ -29,7 +29,7 @@
                                     <th scope="col">Data Rozp.</th>
                                     <th scope="col">Data Zak.</th>
                                     <th scope="col">Kwota do zapł.</th>
-                                    <th scope="col"></th>
+                                    {{-- <th scope="col"></th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,13 +47,13 @@
                                         <td>{{ $archive->date_start }}</td>
                                         <td>{{ $archive->date_end }}</td>
                                         <td>{{ $archive->rental_amount - $archive->refundable_deposit }} zł</td>
-                                        <td>
+                                        {{-- <td>
                                             <a href="{{ route('archives.edit', $archive->id) }}"
                                                 class="btn btn-sm btn-info">Edytuj</a>
 
                                             <a href="{{ route('archives.show', $archive->id) }}"
                                                 class="btn btn-sm btn-primary">Szczegóły</a>
-                                        </td>
+                                        </td> --}}
                                     </tr>
                                 @endforeach
                             </tbody>
