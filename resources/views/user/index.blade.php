@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
+                    <a href="{{ route('users.create') }}" class="btn tbn-sm btn-success my-3">Dodaj</a>
                     <div class="table-responsive">
                         <table id="users">
                             <thead>
