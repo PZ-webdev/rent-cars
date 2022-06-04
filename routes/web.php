@@ -7,6 +7,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarColorController;
+use App\Models\Archives;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::resource('/home', HomeController::class)->only('index');
     Route::resource('/archives', ArchivesController::class);
     Route::resource('/transactions', TransactionController::class);
+    Route::get('/transfer', [TransactionController::class, 'transferArchives'])->name('transactions.transfer.archives');
     Route::resource('/cars', CarController::class);
     Route::resource('/users', UserController::class);
     Route::resource('/car-colors', CarColorController::class);

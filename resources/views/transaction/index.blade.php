@@ -19,6 +19,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
+                    <a href="{{ route('transactions.transfer.archives') }}" class="btn tbn-sm btn-dark my-3">Przenieś do archiwum</a>
                     <a href="{{ route('transactions.create') }}" class="btn tbn-sm btn-success my-3">Dodaj</a>
                     <div class="table-responsive">
                         <table id="reservation">

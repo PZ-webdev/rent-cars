@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
-                    <h3>ID Archiwum: {{ $archive->id }} </h3>
+                    <h3>ID Archiwum: {{ $archives->id }} </h3>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -33,38 +33,38 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Imie i Nazwisko</th>
-                                <td><u>{{ $archive->users->first_name . ' ' . $archive->users->last_name }}</u>
+                                <td><u>{{ $archives->users->first_name . ' ' . $archives->users->last_name }}</u>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Data Wynajmu</th>
-                                <td>{{ $archive->date_start . ' - ' . $archive->date_end }}</td>
+                                <td>{{ $archives->date_start . ' - ' . $archives->date_end }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Samochód</th>
-                                <td><a href="{{ route('cars.show', $archive->id_car) }}"
-                                        class="link-primary ">{{ $archive->cars->mark . ' ' . $archive->cars->model }}</a>
+                                <td><a href="{{ route('cars.show', $archives->id_car) }}"
+                                        class="link-primary ">{{ $archives->cars->mark . ' ' . $archives->cars->model }}</a>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Przejechane Km</th>
                                 <td>
-                                    {{ $archive->km_traveled }}km
+                                    {{ $archives->km_traveled }}km
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Obecna kwota za wynajem</th>
                                 <td>
-                                    {{ $archive->rental_amount }} zł
+                                    {{ $archives->rental_amount }} zł
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Zaliczka</th>
-                                <td>{{ $archive->refundable_deposit }} zł</td>
+                                <td>{{ $archives->refundable_deposit }} zł</td>
                             </tr>
                             <tr>
                                 <th scope="row">Kwota do zapłaty</th>
-                                <td><strong>{{ $archive->rental_amount - $archive->refundable_deposit }}
+                                <td><strong>{{ $archives->rental_amount - $archives->refundable_deposit }}
                                         zł</strong></td>
                             </tr>
                         </tbody>
