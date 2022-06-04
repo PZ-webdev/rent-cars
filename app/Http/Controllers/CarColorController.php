@@ -14,7 +14,9 @@ class CarColorController extends Controller
      */
     public function index()
     {
-        //
+        $carColors = CarColor::all();
+
+        return view('car_color.index', compact('carColors'));
     }
 
     /**
@@ -24,7 +26,9 @@ class CarColorController extends Controller
      */
     public function create()
     {
-        //
+        $carColors = CarColor::all();
+
+        return view('car_color.create', compact('carColors'));
     }
 
     /**
@@ -35,7 +39,11 @@ class CarColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CarColor::create([
+            'name' => $request->name,
+        ]);
+
+         return redirect()->back();
     }
 
     /**

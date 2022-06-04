@@ -40,8 +40,15 @@
 
         <div class="page-wrapper">
 
-            @yield('content')
+            @if (session()->has('message'))
+                <div class="container mt-3">
+                    <div class="alert alert-{{ session()->get('type') }} alert-dismissible fade show" role="alert">
+                        {{ session()->get('message') }}
+                    </div>
+                </div>
+            @endif
 
+            @yield('content')
             <footer class="footer text-center"> {{ date('Y') }} &copy;
                 <a href="/"> {{ config('app.name') }} </a>
             </footer>

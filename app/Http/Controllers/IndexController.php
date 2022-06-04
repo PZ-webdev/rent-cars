@@ -18,7 +18,7 @@ class IndexController extends Controller
         $reservationCount = Transaction::count();
         $carsCount = Car::count();
         $reservationPriceSum = Transaction::sum('amount_to_pay');
-        $lastReservations = Transaction::with('users')->latest()->take(8)->get();
+        $lastReservations = Transaction::with('users')->where('km_traveled', null)->take(8)->get();
 
 
         return view('index', compact('reservationCount', 'carsCount', 'reservationPriceSum', 'lastReservations'));}

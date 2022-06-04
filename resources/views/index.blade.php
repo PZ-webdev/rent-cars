@@ -62,7 +62,7 @@
             <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="white-box">
                     <div class="d-md-flex mb-3">
-                        <h3 class="box-title mb-0">Ostatnie Dokonane Rezerwacje</h3>
+                        <h3 class="box-title mb-0">Rezerwacje w trakcie</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table no-wrap">
@@ -73,6 +73,7 @@
                                     <th class="border-top-0">Od</th>
                                     <th class="border-top-0">Do</th>
                                     <th class="border-top-0">Liczba dni</th>
+                                    <th class="border-top-0"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,6 +85,9 @@
                                         <td>{{ $reservation->date_start }}</td>
                                         <td>{{ $reservation->date_end }}</td>
                                         <td>{{ $reservation->dateDiffInDays($reservation->date_start, $reservation->date_end) }}
+                                        </td>
+                                        <td>
+                                            <a href="{{route('transactions.edit', $reservation->id)}}" class="link-dark border border-danger p-1">Dokończ</a>
                                         </td>
                                     </tr>
                                 @endforeach
