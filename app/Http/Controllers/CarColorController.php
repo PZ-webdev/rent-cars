@@ -43,7 +43,7 @@ class CarColorController extends Controller
             'name' => $request->name,
         ]);
 
-         return redirect()->back();
+        return redirect()->route('car-colors.index')->with(['type' => 'success', 'message' => 'Dodano kolor.']);
     }
 
     /**
@@ -65,7 +65,8 @@ class CarColorController extends Controller
      */
     public function edit(CarColor $carColor)
     {
-        //
+
+        return view('car_color.edit', compact('carColor',));
     }
 
     /**
@@ -77,7 +78,11 @@ class CarColorController extends Controller
      */
     public function update(Request $request, CarColor $carColor)
     {
-        //
+        $carColor->update([
+            'name'      => $request->name,
+        ]);
+
+        return redirect()->route('car-colors.index')->with(['type' => 'success', 'message' => 'Edytowano kolor.']);
     }
 
     /**
@@ -88,6 +93,8 @@ class CarColorController extends Controller
      */
     public function destroy(CarColor $carColor)
     {
-        //
+        $carColor->delete();
+
+        return redirect()->route('car-colors.index')->with(['type' => 'info', 'message' => 'Usunięto kolor.']);
     }
 }

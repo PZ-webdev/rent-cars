@@ -38,7 +38,16 @@
                                             <a href="{{ route('car-colors.edit', $carColor->id) }}"
                                                 class="btn btn-sm btn-info">Edytuj</a>
 
+                                                <form action="{{ route('car-colors.destroy', $carColor->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm mb-3">Usuń</button>
+                                                </form>
+
                                         </td>
+
+
+
                                     </tr>
                                 @endforeach
                             </tbody>
