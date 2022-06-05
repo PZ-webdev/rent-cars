@@ -44,6 +44,13 @@ class TransactionController extends Controller
      */
     public function store(TransactionStoreRequest $request)
     {
+        $checkCar = DB::select("SELECT check_car_is_available($request->id_car, '$request->date_start')");
+        $check = $checkCar[0]->check_car_is_available;
+
+        if (!$check) {
+            return redirect()->route('transactions.index')->with(['type' => 'info', 'message' => 'Samochód jest w trakcie rezerwacji.']);
+        }
+
         $car = Car::findOrFail($request->id_car);
 
         $rental_amount = $car->rent_price;
