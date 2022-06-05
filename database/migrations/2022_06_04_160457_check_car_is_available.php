@@ -23,7 +23,7 @@ return new class extends Migration
          BEGIN
          perform * from transactions 
          where id_car = check_car_is_available.id 
-         and date_end < check_car_is_available.date_start; 
+         and date_end >= check_car_is_available.date_start; 
             if not found then
               return true;
            else
